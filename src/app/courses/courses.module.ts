@@ -25,6 +25,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {compareCourses, Course} from './model/course';
 
 import {compareLessons, Lesson} from './model/lesson';
+import { AuthGuard } from '../auth/auth.guard';
 
 
 export const coursesRoutes: Routes = [

@@ -60,9 +60,10 @@ export class AppComponent implements OnInit {
     }
 
     logout() {
-      const newLoginAction = logout();
+      //const newLogoutAction = logout();
       console.log('in logout');
-      this.store.dispatch(newLoginAction);
+      this.store.dispatch(logout());
+      this.router.navigateByUrl('/login');
     }
 
 }
