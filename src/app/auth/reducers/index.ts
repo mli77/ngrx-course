@@ -38,11 +38,10 @@ export const authReducer = createReducer(
   }),
 
   on(AuthActions.logout, (state, action) => {
+    console.log('Calling logout reducer');
       return {
           user: undefined
       }
   })
-
-
 
 );
