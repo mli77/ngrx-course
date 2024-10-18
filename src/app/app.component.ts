@@ -26,6 +26,12 @@ export class AppComponent implements OnInit {
 
       //this.store.subscribe(state => console.log("store value:", state));
 
+      const userProfile = localStorage.getItem("user");
+
+      if (userProfile) {
+          this.store.dispatch(login({user: JSON.parse(userProfile)}));
+      }
+
       this.isLoggedIn$ = this.store
       .pipe(
         //select(state => !!state["auth"].user)
