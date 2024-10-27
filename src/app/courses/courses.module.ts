@@ -26,12 +26,20 @@ import {compareCourses, Course} from './model/course';
 
 import {compareLessons, Lesson} from './model/lesson';
 import { AuthGuard } from '../auth/auth.guard';
+import { CoursesResolver } from './courses.resolver';
+import { CoursesEffects } from './courses.effect';
+import { coursesReducer } from './reducers/course.reducers';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
 
 
 export const coursesRoutes: Routes = [
   {
     path: '',
-    component: HomeComponent
+    component: HomeComponent,
+    resolve: {
+      courses: CoursesResolver
+    }
 
   },
   {
@@ -59,7 +67,9 @@ export const coursesRoutes: Routes = [
     MatDatepickerModule,
     MatMomentDateModule,
     ReactiveFormsModule,
-    RouterModule.forChild(coursesRoutes)
+    RouterModule.forChild(coursesRoutes),
+    EffectsModule.forFeature([CoursesEffects]),
+    StoreModule.forFeature("courses", coursesReducer)
   ],
   declarations: [
     HomeComponent,
@@ -74,7 +84,8 @@ export const coursesRoutes: Routes = [
     CourseComponent
   ],
   providers: [
-    CoursesHttpService
+    CoursesHttpService,
+    CoursesResolver
   ]
 })
 export class CoursesModule {
